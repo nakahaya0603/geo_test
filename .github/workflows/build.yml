@@ -11,8 +11,8 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron:  '*/10 * * * *'
-    # 10分ごとに実行
+    - cron:  '15 7 * * *'
+    # 毎日7時15分に実行
 
 permissions:
   contents: write
@@ -28,6 +28,12 @@ jobs:
       with:
         node-version: 16.x
 
+    - name: Install dependencies
+      run:　pip install -r requirements.txt
+
+    - name: Run Python
+      run: python scra.py
+
     - run: npm install
 
     - name: Push the data to Github
@@ -37,7 +43,7 @@ jobs:
         if (git diff --shortstat | grep '[0-9]'); then \
           git add .; \
           git status .; \
-          git commit -m "スプレッドシートのデータを更新"; \
+          git commit -m "データを更新"; \
           git push -f origin master; \
         fi
     - run: npm run build -repository=${GITHUB_REPOSITORY}
