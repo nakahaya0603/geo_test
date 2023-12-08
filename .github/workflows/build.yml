@@ -32,7 +32,7 @@ jobs:
       run:　pip install -r requirements.txt
 
     - name: Run Python
-      run: python scra.py
+      run: python uni_get.py
 
     - run: npm install
 
