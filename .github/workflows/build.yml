@@ -44,7 +44,7 @@ jobs:
           git add .; \
           git status .; \
           git commit -m "データを更新"; \
-          git push origin master; \
+          git push -f origin main:${{ github.ref }}\
         fi
     - run: npm run build -repository=${GITHUB_REPOSITORY}
 
