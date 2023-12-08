@@ -36,16 +36,18 @@ jobs:
 
     - run: npm install
 
-    - name: Push the data to Github
-      run: |
-        git config --global user.name "${GITHUB_ACTOR}"
-        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        if (git diff --shortstat | grep '[0-9]'); then \
-          git add .; \
-          git status .; \
-          git commit -m "データを更新"; \
-          git push -f origin master; \
-        fi
+    - name: Create public folder
+      run: mkdir -p public
+
+    - name: Move data.json to public folder
+      run: mv data.json public/
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: data-artifact
+        path: public/
+        
     - run: npm run build -repository=${GITHUB_REPOSITORY}
 
     - name: Deploy
