@@ -33,10 +33,10 @@ jobs:
 
     - name: Run Python
       run: python uni_get.py
-    - name: Display Output
-      run: cat data.json
+
     - name: Move data.json to public directory
       run: mv data.json public/
+      
     - name: Commit changes
       run: |
 
