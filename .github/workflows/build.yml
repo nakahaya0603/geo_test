@@ -25,6 +25,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+
+    - run: npm install
 
     - name: Push the data to Github
       run: |
@@ -36,7 +40,6 @@ jobs:
           git commit -m "スプレッドシートのデータを更新"; \
           git push -f origin master; \
         fi
-
     - run: npm run build -repository=${GITHUB_REPOSITORY}
 
     - name: Deploy
