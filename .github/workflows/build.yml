@@ -35,6 +35,17 @@ jobs:
       run: python uni_get.py
     - name: Display Output
       run: cat data.json
+    - name: Move data.json to public directory
+      run: mv data.json public/
+    - name: Stage changes
+      run: git add public/data.json
+    - name: Commit changes
+      run: |
+        git config --global user.name "${GITHUB_ACTOR}"
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git commit -m "Move data.json to public directory"
+    - name: Push changes to Github
+      run: git push origin master
 
     - run: npm install
     - name: Debug directory contents
