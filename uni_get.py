@@ -42,6 +42,6 @@ for i in range(47):
         
 base_json_dict["values"] = values
 final_json_string = json.dumps(base_json_dict, indent=4, ensure_ascii=False)
-print(final_json_string)
+
 f.writelines(final_json_string)
 f.close()
