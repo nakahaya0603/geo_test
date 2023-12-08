@@ -37,7 +37,9 @@ jobs:
       run: cat data.json
 
     - run: npm install
-
+    - name: Debug directory contents
+      run: |
+        ls -R
     - name: Push the data to Github
       run: |
         git config --global user.name "${GITHUB_ACTOR}"
