@@ -37,13 +37,16 @@ jobs:
     - name: Move data.json to public directory
       run: mv data.json public/
 
-    - name: Set current datetime as env variable
-      env:
-        TZ: 'Asia/Tokyo' # タイムゾーン指定
-      run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
-    
-    - name: Show current datetime
-      run: echo ${{ env.CURRENT_DATETIME }}
+    - name: Set Last Update
+      id: set_last_update
+      run: |
+        last_update=$(python update.py)
+        echo "LAST_UPDATE=${last_update}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Use Last Update
+      run: |
+        echo "Last Update: $LAST_UPDATE"
 
     - name: Commit changes
       run: |
@@ -54,7 +57,7 @@ jobs:
           echo "No changes to commit."
         else
           git add public/data.json
-          git commit -m "データを更新 ${{ env.CURRENT_DATETIME }}"
+          git commit -m "データを更新 $LAST_UPDATE"
           git push origin master
         fi
 
