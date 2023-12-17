@@ -6,7 +6,7 @@ import json
 
 f = open('data.json', 'w',errors='ignore')
 
-base_json_string = '{"range": "スポットデータ 1","majorDimension": "ROWS","values": []}'
+base_json_string = '{"range": "スポットデータ","majorDimension": "ROWS","values": []}'
 base_json_dict = json.loads(base_json_string)
 
 values = []
