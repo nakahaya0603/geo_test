@@ -36,10 +36,18 @@ jobs:
 
     - name: Move data.json to public directory
       run: mv data.json public/
-      
+
+    - name: Get current date and time
+      env: 
+          TZ: "Asia/Tokyo" # タイムゾーンを指定
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M')"
+
+    - name: Show date and time
+      run: echo ${{ steps.date.outputs.date }}
+        
     - name: Commit changes
       run: |
-
         git config --global user.name "${GITHUB_ACTOR}"
         git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
         # 変更があるか確認
@@ -47,7 +55,7 @@ jobs:
           echo "No changes to commit."
         else
           git add public/data.json
-          git commit -m "データを更新"
+          git commit -m "データを更新 ${{ steps.date.outputs.date }}"
           git push origin master
         fi
 
