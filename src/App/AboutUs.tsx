@@ -9,7 +9,7 @@ const Content = () => {
   useEffect(() => {
     const fetchLastUpdate = async () => {
       try {
-        const response = await fetch('/last_update.json'); // パスは実際のファイルの場所に合わせてください
+        const response = await fetch('../../src/last_update.json'); // パスは実際のファイルの場所に合わせてください
         const data = await response.json();
         setLastUpdate(data.last_update);
       } catch (error) {
