@@ -1,5 +1,6 @@
 import './AboutUs.scss';
 import config from '../config.json';
+import lastUpdateData from '../../public/last_update.json'; // パスは実際のファイルの場所に合わせてください
 import { FaPlus } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 
@@ -7,17 +8,7 @@ const Content = () => {
   const [lastUpdate, setLastUpdate] = useState('');
 
   useEffect(() => {
-    const fetchLastUpdate = async () => {
-      try {
-        const response = await fetch('../../src/last_update.json'); // パスは実際のファイルの場所に合わせてください
-        const data = await response.json();
-        setLastUpdate(data.last_update);
-      } catch (error) {
-        console.error('Error fetching last update:', error);
-      }
-    };
-
-    fetchLastUpdate();
+    setLastUpdate(lastUpdateData.last_update);
   }, []); // 最初にコンポーネントがマウントされたときに一度だけ実行
 
   const clickHandler = () => {
