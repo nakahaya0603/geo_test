@@ -9,5 +9,5 @@ print(d)
 
 data = {'last_update': d}
 
-with open('src/last_update.json', 'w', encoding='utf-8') as f:
+with open('public/last_update.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False)
