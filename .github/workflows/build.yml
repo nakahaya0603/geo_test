@@ -57,7 +57,7 @@ jobs:
           echo "No changes to commit."
         else
           git add public/data.json
-          git add last_update.json
+          git add public/last_update.json
           git commit -m "データを更新 $LAST_UPDATE"
           git push origin master
         fi
