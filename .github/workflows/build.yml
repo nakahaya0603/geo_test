@@ -8,10 +8,10 @@ on:
     branches:
       - 'master'
 
-  workflow_dispatch:
+#  workflow_dispatch:
 
-  schedule:
-    - cron:  '15 7 * * *'
+#  schedule:
+#    - cron:  '15 7 * * *'
     # 毎日7時15分に実行
 
 permissions:
